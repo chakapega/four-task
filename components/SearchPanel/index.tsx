@@ -3,11 +3,11 @@ import SearchIcon from '@material-ui/icons/Search';
 import { useState } from 'react';
 import styles from '../../styles/SearchPanel.module.css';
 
-export default function SearchPanel() {
+const SearchPanel: React.FC = () => {
   const [name, setName] = useState('');
 
   const [gender, setGender] = useState('');
-  
+
   const [nationality, setNationality] = useState('');
 
   const nameTextFieldChangeHandler = (e: React.ChangeEvent<{ value: string }>) => {
@@ -52,4 +52,6 @@ export default function SearchPanel() {
       </IconButton>
     </form>
   );
-}
+};
+
+export default SearchPanel;
