@@ -8,7 +8,7 @@ import '../styles/globals.css';
 
 const theme = createMuiTheme({});
 
-const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
+export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   React.useEffect(() => {
     const jssServerSide = document.querySelector('#jss-server-side');
 
@@ -29,6 +29,4 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
       </ThemeProvider>
     </>
   );
-};
-
-export default MyApp;
+}

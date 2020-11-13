@@ -1,6 +1,8 @@
 import SearchPanel from '../components/SearchPanel';
 import UserList from '../components/UserList';
 import { makeStyles } from '@material-ui/core/styles';
+import userService from '../services/UserService';
+import { IndexPropsType, UsersType } from '../types';
 
 const useStyles = makeStyles({
   main: {
@@ -10,15 +12,19 @@ const useStyles = makeStyles({
   },
 });
 
-const Index: React.FC = () => {
+export default function Index({ users }: IndexPropsType): JSX.Element {
   const classes = useStyles();
 
   return (
     <main className={classes.main}>
       <SearchPanel />
-      <UserList />
+      <UserList users={users} />
     </main>
   );
-};
+}
 
-export default Index;
+export async function getServerSideProps(): Promise<{ props: { users: UsersType } }> {
+  const users: UsersType = await userService.getTwentyUsers();
+
+  return { props: { users } };
+}

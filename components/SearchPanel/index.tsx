@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SearchPanel: React.FC = () => {
+export default function SearchPanel(): JSX.Element {
   const classes = useStyles();
 
   const [name, setName] = useState('');
@@ -77,6 +77,7 @@ const SearchPanel: React.FC = () => {
         value={nationality}
         className={classes.textField}
         label="Search by nationality"
+        placeholder="Examples: US, DE, BR, AU, FI"
         onChange={nationalityTextFieldChangeHandler}
       />
       <IconButton type="submit">
@@ -84,6 +85,4 @@ const SearchPanel: React.FC = () => {
       </IconButton>
     </form>
   );
-};
-
-export default SearchPanel;
+}
