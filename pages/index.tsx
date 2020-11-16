@@ -2,7 +2,9 @@ import SearchPanel from '../components/SearchPanel';
 import UserList from '../components/UserList';
 import { makeStyles } from '@material-ui/core/styles';
 import userService from '../services/UserService';
-import { IndexPropsType, UsersType } from '../types';
+import { StoreStateType, UsersType } from '../types';
+import { initializeStore } from '../store';
+import { setUsers } from '../store/user/actionCreators';
 
 const useStyles = makeStyles({
   main: {
@@ -12,19 +14,26 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Index({ users }: IndexPropsType): JSX.Element {
+export default function Index(): JSX.Element {
   const classes = useStyles();
 
   return (
     <main className={classes.main}>
       <SearchPanel />
-      <UserList users={users} />
+      <UserList />
     </main>
   );
 }
 
-export async function getServerSideProps(): Promise<{ props: { users: UsersType } }> {
+export async function getServerSideProps(): Promise<{
+  props: {
+    initialReduxState: StoreStateType;
+  };
+}> {
+  const { dispatch, getState } = initializeStore();
   const users: UsersType = await userService.getTwentyUsers();
 
-  return { props: { users } };
+  dispatch(setUsers(users));
+
+  return { props: { initialReduxState: getState() } };
 }

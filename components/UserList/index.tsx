@@ -1,6 +1,7 @@
 import { Table, TableHead, TableRow, TableBody, TableCell } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { UserListPropsType } from '../../types';
+import { useSelector } from 'react-redux';
+import { StoreStateType } from '../../types';
 import UserListItem from '../UserListItem';
 
 const useStyles = makeStyles((theme) => ({
@@ -15,7 +16,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function UserList({ users }: UserListPropsType): JSX.Element {
+export default function UserList(): JSX.Element {
+  const users = useSelector((state: StoreStateType) => state.user.users);
+
   const classes = useStyles();
 
   return (

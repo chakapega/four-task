@@ -1,3 +1,5 @@
+import { SET_USERS } from '../store/user/actionTypes';
+
 export type UserType = {
   dob: {
     age: number;
@@ -32,14 +34,27 @@ export type UserType = {
 
 export type UsersType = Array<UserType>;
 
-export type IndexPropsType = {
-  users: UsersType;
-};
-
 export type UserListPropsType = {
   users: UsersType;
 };
 
 export type UserListItemPropsType = {
   user: UserType;
+};
+
+export type UserStateType = {
+  users: UsersType;
+};
+
+export type UserActionTypes = SetUsersActionType;
+
+export type SetUsersActionType = {
+  type: typeof SET_USERS;
+  payload: UsersType;
+};
+
+export type StoreStateType = {
+  user: {
+    users: UsersType;
+  };
 };

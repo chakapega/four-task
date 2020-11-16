@@ -39,7 +39,7 @@ export default function UserListItem({ user }: UserListItemPropsType): JSX.Eleme
         <TableCell>{date}</TableCell>
         <TableCell>{email}</TableCell>
         <TableCell>{phone}</TableCell>
-        <TableCell>{`${country},${city},${name} ${number}`}</TableCell>
+        <TableCell>{`${country}, ${city}, ${name} ${number}`}</TableCell>
       </TableRow>
     </Link>
   );
